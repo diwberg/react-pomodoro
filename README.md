@@ -5,7 +5,7 @@
 ## Aplicação para controle de tempo - Pomodoro
 LINK
 
-Font-end, pode conferir as funcionalidades no link [ICYou Feed](LINK "Site do projeto").
+Font-end, pode conferir as funcionalidades no link [ICYou Pomodoro](LINK "Site do projeto").
 
 A aplicação segue os modelos mais modernos de implementação, sempre priorizando o cleancode e a responsividade dos elementos.
 
@@ -39,9 +39,7 @@ A aplicação segue os modelos mais modernos de implementação, sempre prioriza
 - Datas e contadores de tempo formatados (date-fns)
 - Dados abstraídos (Array fazendo o papel de DB)
 - Input interativo
-- Validação de input vazio com ativação do botão
-- Exclusão de comentários
-- Interação com o comentário
+
 
 
 # Como executar o projeto
@@ -67,6 +65,6 @@ npm run dev
 
 Diwberg de Andrade Pereira
 
-https://www.github.com/diwberg
+[Instagram](https://www.instagram.com/diwberg/)
 
 
