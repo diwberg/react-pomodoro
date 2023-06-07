@@ -4,7 +4,7 @@ export const LayoutContainer = styled.div`
   height: calc(100vh - 10rem);
   margin: 5rem auto;
   padding: 2.5rem;
-  box-shadow: 5px 5px 15px 2px ${(props) => props.theme['purple-500']};
+  box-shadow: 2px 2px 20px 2px ${(props) => props.theme['purple-500']};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
