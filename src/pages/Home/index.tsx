@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   HomeContainer,
   FormContainer,
@@ -9,6 +10,9 @@ import {
 } from './styles'
 import { LuPlay } from 'react-icons/lu'
 export function Home() {
+  const [task, setTask] = useState('')
+  const [minutes, setMinutes] = useState(5)
+
   return (
     <HomeContainer>
       <form action="">
@@ -18,6 +22,8 @@ export function Home() {
             id="task"
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
+            onChange={(e) => setTask(e.target.value)}
+            value={task}
           />
           <datalist id="task-suggestions">
             <option value="Projeto 1" />
@@ -32,6 +38,14 @@ export function Home() {
             step={5}
             min={5}
             max={60}
+            onChange={(e) =>
+              +e.target.value < 5
+                ? setMinutes(5)
+                : +e.target.value > 60
+                ? setMinutes(60)
+                : setMinutes(+e.target.value)
+            }
+            value={minutes}
           />
           <span>minutos.</span>
         </FormContainer>
@@ -42,7 +56,7 @@ export function Home() {
           <span>0</span>
           <span>0</span>
         </CountDownContainer>
-        <ButtonStart disabled type="submit">
+        <ButtonStart disabled={!task || !minutes} type="submit">
           <LuPlay size={24} />
           Começar
         </ButtonStart>
