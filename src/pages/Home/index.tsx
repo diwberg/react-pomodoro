@@ -20,8 +20,8 @@ export interface Cycle {
 }
 
 export function Home() {
-
-  
+  const [cycles, setCycles] = useState<Cycle[]>([])
+  const [activeCycles, setActiveCycles] = useState<string | null>(null)
 
   const formValidationSchema = z.object({
     task: z.string().min(1, 'Informe alguma tarefa'),
@@ -48,9 +48,19 @@ export function Home() {
   })
 
   const handleSubmitForm = (data: NewFormData) => {
-    console.log(data)
+    const id: string = Date.now().toString()
+    const newCycle: Cycle = {
+      id,
+      task: data.task,
+      minutesAmount: data.minutesAmount,
+    }
+    setCycles((state) => [...state, newCycle])
+    setActiveCycles(id)
+    reset()
   }
-  const onError = (error: Error, e: Event) => console.log(error, e)
+  const onError = (error: Error) => console.log(error)
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycles)
+  console.log(activeCycle)
 
   const task = watch('task')
   const isDesabledSubmit = !task
@@ -79,7 +89,7 @@ export function Home() {
             step={5}
             min={5}
             max={60}
-            {...register('minutesAmount')}
+            {...register('minutesAmount', { valueAsNumber: true })}
             {...(errors.minutesAmount && (
               <span>{errors.minutesAmount.message}</span>
             ))}
