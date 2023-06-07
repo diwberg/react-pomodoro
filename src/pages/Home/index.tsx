@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as zod from 'zod'
+import { z } from 'zod'
 import {
   HomeContainer,
   FormContainer,
@@ -11,19 +11,35 @@ import {
   MinutesAmountInput,
 } from './styles'
 import { LuPlay } from 'react-icons/lu'
+import { useState } from 'react'
+
+export interface Cycle {
+  id: string
+  task: string
+  minutesAmount: number
+}
 
 export function Home() {
-  const formValidationSchema = zod.object({
-    task: zod.string().min(1, 'Informe alguma tarefa'),
-    minutesAmount: zod
+
+  
+
+  const formValidationSchema = z.object({
+    task: z.string().min(1, 'Informe alguma tarefa'),
+    minutesAmount: z
       .number()
       .min(5, 'O minimo de minutos é 5')
       .max(60, 'O maximo de minutos é 60'),
   })
 
-  type NewFormData = zod.infer<typeof formValidationSchema>
+  type NewFormData = z.infer<typeof formValidationSchema>
 
-  const { register, handleSubmit, watch, reset } = useForm<NewFormData>({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<NewFormData>({
     resolver: zodResolver(formValidationSchema),
     defaultValues: {
       task: '',
@@ -31,17 +47,17 @@ export function Home() {
     },
   })
 
-  function handleSubmitFormTask(data: NewFormData) {
+  const handleSubmitForm = (data: NewFormData) => {
     console.log(data)
-    reset()
   }
+  const onError = (error: Error, e: Event) => console.log(error, e)
 
   const task = watch('task')
   const isDesabledSubmit = !task
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(handleSubmitFormTask)}>
+      <form onSubmit={handleSubmit(handleSubmitForm, onError)}>
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
           <TaskInput
@@ -49,6 +65,7 @@ export function Home() {
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
             {...register('task')}
+            {...(errors.task && <span>{errors.task.message}</span>)}
           />
           <datalist id="task-suggestions">
             <option value="Projeto 1" />
@@ -63,6 +80,9 @@ export function Home() {
             min={5}
             max={60}
             {...register('minutesAmount')}
+            {...(errors.minutesAmount && (
+              <span>{errors.minutesAmount.message}</span>
+            ))}
           />
           <span>minutos.</span>
         </FormContainer>
