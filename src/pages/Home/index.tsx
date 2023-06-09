@@ -21,7 +21,8 @@ export interface Cycle {
 
 export function Home() {
   const [cycles, setCycles] = useState<Cycle[]>([])
-  const [activeCycles, setActiveCycles] = useState<string | null>(null)
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [ammountSecondsSteps, setAmmountSecondsSteps] = useState(0)
 
   const formValidationSchema = z.object({
     task: z.string().min(1, 'Informe alguma tarefa'),
@@ -55,19 +56,30 @@ export function Home() {
       minutesAmount: data.minutesAmount,
     }
     setCycles((state) => [...state, newCycle])
-    setActiveCycles(id)
+    setActiveCycleId(id)
     reset()
   }
-  const onError = (error: Error) => console.log(error)
-  const activeCycle = cycles.find((cycle) => cycle.id === activeCycles)
-  console.log(activeCycle)
+
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  const totalSecondsActive = activeCycle ? activeCycle.minutesAmount * 60 : 0
+
+  const currentSeconds = activeCycle
+    ? totalSecondsActive - ammountSecondsSteps
+    : 0
+
+  const currentMinutesfromSeconds = Math.floor(currentSeconds / 60)
+  const currentSecondsfromMinutes = currentSeconds % 60
+
+  const minutes = String(currentMinutesfromSeconds).padStart(2, '0')
+  const seconds = String(currentSecondsfromMinutes).padStart(2, '0')
 
   const task = watch('task')
   const isDesabledSubmit = !task
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(handleSubmitForm, onError)}>
+      <form onSubmit={handleSubmit(handleSubmitForm)}>
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
           <TaskInput
@@ -97,11 +109,11 @@ export function Home() {
           <span>minutos.</span>
         </FormContainer>
         <CountDownContainer>
-          <span>0</span>
-          <span>0</span>
+          <span>{minutes[0]}</span>
+          <span>{minutes[1]}</span>
           <Separator>:</Separator>
-          <span>0</span>
-          <span>0</span>
+          <span>{seconds[0]}</span>
+          <span>{seconds[1]}</span>
         </CountDownContainer>
         <ButtonStart disabled={isDesabledSubmit} type="submit">
           <LuPlay size={24} />
