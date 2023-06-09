@@ -28,10 +28,10 @@ A aplicação segue os modelos mais modernos de implementação, sempre prioriza
 - ReactJS
 - React Doom
 - Vite
-- State Components
+- Styled Components
 - React Hook Form
 - Zod
-- React Router Doom
+- React Router Dom
 - Context API [React]
 - Immer
 ## Features
