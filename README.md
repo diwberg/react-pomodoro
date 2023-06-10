@@ -33,7 +33,6 @@ A aplicação segue os modelos mais modernos de implementação, sempre prioriza
 - Zod
 - React Router Dom
 - Context API [React]
-- Immer
 ## Features
 - Responsive
 - Datas e contadores de tempo formatados (date-fns)
