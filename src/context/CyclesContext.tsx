@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useReducer, useState } from 'react'
 
-export interface Cycle {
+export interface Cycles {
   id: string
   task: string
   minutesAmount: number
@@ -15,8 +15,8 @@ export interface CreateCycleData {
 }
 
 interface ContextCyclesType {
-  cycles: Cycle[]
-  activeCycle: Cycle | undefined
+  cycles: Cycles[]
+  activeCycle: Cycles | undefined
   activeCycleId: string | null
   ammountSecondsPassed: number
   handleCurrentCycleFinished: () => void
@@ -34,7 +34,10 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cycles, setCycles] = useState<Cycle[]>([])
+  const [cycles, dispatch] = useReducer((state: Cycles[], action: any) => {
+    return state
+  }, [])
+
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
   const [ammountSecondsPassed, setAmmountSecondsPassed] = useState(0)
 
