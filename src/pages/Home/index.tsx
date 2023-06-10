@@ -1,13 +1,13 @@
+import { NewCycleForm } from './components/NewCycleForm'
+import { CountDown } from './components/CountDown'
+import { CyclesContext } from '../../context/CyclesContext'
+import { useContext } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { HomeContainer, CountDownStart, CountDownStop } from './styles'
 import { LuPlay } from 'react-icons/lu'
 import { FaHandPaper } from 'react-icons/fa'
-import { NewCycleForm } from './components/NewCycleForm'
-import { CountDown } from './components/CountDown'
-import { z } from 'zod'
-import { FormProvider, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { CyclesContext } from '../../context/CyclesContext'
-import { useContext } from 'react'
 
 const formValidationSchema = z.object({
   task: z.string().min(1, 'Informe alguma tarefa'),
