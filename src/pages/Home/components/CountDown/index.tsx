@@ -6,16 +6,12 @@ import { CyclesContext } from '../../../../context/CyclesContext'
 export function CountDown() {
   const {
     activeCycle,
-    ammountSecondsPassed,
     handleCurrentCycleFinished,
     setSecondsPassed,
+    minutes,
+    seconds,
+    totalCurrentSeconds,
   } = useContext(CyclesContext)
-
-  const totalSecondsActive = activeCycle ? activeCycle.minutesAmount * 60 : 0
-
-  const currentSeconds = activeCycle
-    ? totalSecondsActive - ammountSecondsPassed
-    : 0
 
   useEffect(() => {
     let interval: number
@@ -24,10 +20,10 @@ export function CountDown() {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(
           new Date(),
-          activeCycle.startDate,
+          new Date(activeCycle.startDate),
         )
 
-        if (currentSeconds <= 0) {
+        if (totalCurrentSeconds <= 0) {
           handleCurrentCycleFinished()
           clearInterval(interval)
         }
@@ -42,20 +38,8 @@ export function CountDown() {
     activeCycle,
     handleCurrentCycleFinished,
     setSecondsPassed,
-    currentSeconds,
+    totalCurrentSeconds,
   ])
-
-  const currentMinutesfromCurrentSeconds = Math.floor(currentSeconds / 60)
-  const currentSecondsfromMinutes = currentSeconds % 60
-
-  const minutes = String(currentMinutesfromCurrentSeconds).padStart(2, '0')
-  const seconds = String(currentSecondsfromMinutes).padStart(2, '0')
-
-  useEffect(() => {
-    if (activeCycle) {
-      document.title = `${minutes}:${seconds}`
-    }
-  }, [minutes, seconds, activeCycle])
 
   return (
     <CountDownContainer>
