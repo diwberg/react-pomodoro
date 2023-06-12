@@ -41,24 +41,21 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
+  const localStorageName = '@ICYou_Pomodoro:cyclesState-v1.0.0'
   const [states, dispatch] = useReducer(
     cyclesReducer,
-    {
-      cycles: [],
-      activeCycleId: null,
-    },
+    { cycles: [], activeCycleId: null },
     () => {
-      const storedStateAsJSON = localStorage.getItem(
-        '@ICYou_Pomodoro:cyclesState-v1.0.0',
-      )
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON)
+      const storedStateAsJson = localStorage.getItem(localStorageName)
+      if (storedStateAsJson) {
+        return JSON.parse(storedStateAsJson)
       }
+      return { cycles: [], activeCycleId: null }
     },
   )
   useEffect(() => {
     const stateJSON = JSON.stringify(states)
-    localStorage.setItem('@ICYou_Pomodoro:cyclesState-v1.0.0', stateJSON)
+    localStorage.setItem(localStorageName, stateJSON)
   }, [states])
 
   const { cycles, activeCycleId } = states
