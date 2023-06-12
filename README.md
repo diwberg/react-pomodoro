@@ -17,16 +17,16 @@ Este é um projeto React de controle de tempo de tarefas baseado na técnica Pom
 O projeto foi desenvolvido utilizando padrões modernos e possui validação dos inputs. Foi utilizado o Vite como bundler para melhor desempenho e rápida inicialização do ambiente de desenvolvimento.
 
 ## Layout
-![Web 1]()
+![Web 1](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/web1.png)
 
-![Web 2]()
+![Web 2](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/web2.png)
 
-![Web 3]()
+![Web 3](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/web3.png)
 
-![Web 4]()
+![Web 4](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/web4.png)
 
 ## Dependências
-![Dependências]()
+![Dependências](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/dependence.png)
 
 # Tecnologias utilizadas
 ## Front end
