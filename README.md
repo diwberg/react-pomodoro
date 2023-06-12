@@ -6,15 +6,12 @@
 
 Pode conferir as funcionalidades no link [ICYou Pomodoro](https://react-pomodoro-dusky.vercel.app/ "Site do projeto").
 
-This is a React project for time task management based on the Pomodoro Technique. The Pomodoro Technique is a time management approach that uses focused work periods interspersed with regular breaks to increase productivity.
+### This is a React project for time task management based on the Pomodoro Technique. The Pomodoro Technique is a time management approach that uses focused work periods interspersed with regular breaks to increase productivity.
+### The project was developed using modern patterns and includes input validation. Vite was used as the bundler for improved performance and fast development environment setup.
 
-The project was developed using modern patterns and includes input validation. Vite was used as the bundler for improved performance and fast development environment setup.
-
-
-A aplicação segue os modelos mais modernos de implementação, sempre priorizando o cleancode.
-Este é um projeto React de controle de tempo de tarefas baseado na técnica Pomodoro. A técnica Pomodoro é uma abordagem de gerenciamento de tempo que utiliza períodos de trabalho focado intercalados com pausas regulares para aumentar a produtividade.
-
-O projeto foi desenvolvido utilizando padrões modernos e possui validação dos inputs. Foi utilizado o Vite como bundler para melhor desempenho e rápida inicialização do ambiente de desenvolvimento.
+### A aplicação segue os modelos mais modernos de implementação, sempre priorizando o cleancode.
+### Este é um projeto React de controle de tempo de tarefas baseado na técnica Pomodoro. A técnica Pomodoro é uma abordagem de gerenciamento de tempo que utiliza períodos de trabalho focado intercalados com pausas regulares para aumentar a produtividade.
+### O projeto foi desenvolvido utilizando padrões modernos e possui validação dos inputs. Foi utilizado o Vite como bundler para melhor desempenho e rápida inicialização do ambiente de desenvolvimento.
 
 ## Layout
 ![Web 1](https://github.com/diwberg/react-pomodoro/blob/main/assets/readme/web1.png)
@@ -64,8 +61,8 @@ npm install
 # executar o projeto
 npm run dev
 
-# acessar o projeto
-Acesse o aplicativo no navegador em http://localhost:3000.
+# acessar o projeto no navegador em 
+http://localhost:3000.
 ```
 
 # Autor
